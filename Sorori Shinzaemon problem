@@ -1,0 +1,54 @@
+【Problem 1] Number of grains of rice on the 100th day
+
+rice_list =[1]
+total_num_days = 100
+for i in range(1,total_num_days):
+    rice_list.append((rice_list[i-1])*2)
+rice_list=np.array(arr)
+num_grains=np.sum(arr)
+print("Total number of rice grains = {}".format(num_grains))
+
+#Drawing a line graph to represent the change in the number of rice grains you received
+
+num_days = 101
+days = range(1, num_days)
+
+sum_arr=[]
+for i in range(100):
+    sum_arr.append(np.sum(arr[:i+1]))
+import matplotlib.pyplot as plt
+
+plt.plot(days, arr)
+plt.title('Number of Rice grains')
+plt.xlabel('Number of days'); 
+plt.ylabel('Number of Rice ');
+plt.legend(['Number of rice grains you receive on that day', 'The total number of rice grains you receive by that day'])
+plt.show()
+
+Problem 2] Number of rice grains outside of the 100th day
+
+def compute_sorori_shinzaemon(day=100):
+    list_n_grains=arr[:day]
+    list_total_grains=sum_arr[:day]
+    print("Total number of rice gains after {} days is : {} ".format(day,np.sum(list_n_grains)))
+    days = range(1, day+1)    
+    plt.plot(days, list_n_grains)
+    plt.plot(days, list_total_grains)
+    plt.title('Number of Rice grains')
+    plt.xlabel('Days'); 
+    plt.ylabel('Number of Rice rice grains');
+    plt.legend(['the number of rice you get one day', 'number of rice received by a certain day'])
+    return list_n_grains,list_total_grains
+list_n_grains,list_total_grains=compute_sorori_shinzaemon(day=10)
+plt.show()
+
+Problem 3] How many people can live for how many days with the rice we get?
+
+#Let's take 250 the number of grains of rice required per one people to live one day
+def number_of_days_to_live(number_of_grains,number_of_people):
+ days_to_live_per_one_people = number_of_grains/250
+ num_days_to_live = days_to_live_per_one_people/number_of_people
+ return num_days_to_live
+n=number_of_days_to_live(19200,5)
+print("Number of days to live = {} days".format(n//1))
+#It takes approximately 400 grams or about 19,200 grains of rice to feed one adult per day according to WHO from Wikipedia
